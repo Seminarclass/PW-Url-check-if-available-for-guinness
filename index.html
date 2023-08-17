@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>URL List Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin: 5px 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px auto;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>URL List Generator</h2>
+    
+    <p>Enter the starting number:</p>
+    <input type="number" id="startingNumber" value="1" min="1" />
+    
+    <p>Enter the ending number:</p>
+    <input type="number" id="endingNumber" value="100" min="1" />
+    
+    <button onclick="generateLinks()">Generate Links</button>
+
+    <p>Generated Links:</p>
+    <ul id="linkList">
+      <!-- Generated links will be displayed here -->
+    </ul>
+  </div>
+
+  <script>
+    const baseUrl = "https://www.namecheap.com/hosting/purchase/domain-connection/?product=stellar-business&addons=server-location%3Bserver-location-us&duration=1&durationtype=year&domain=Myfirstworldrecords";
+
+    function generateLinks() {
+      const startingNumber = parseInt(document.getElementById("startingNumber").value);
+      const endingNumber = parseInt(document.getElementById("endingNumber").value);
+      const linkList = document.getElementById("linkList");
+      linkList.innerHTML = ""; // Clear previous links
+
+      for (let i = startingNumber; i <= endingNumber; i++) {
+        const linkUrl = `${baseUrl}${i}.pw&domainType=new`;
+        const listItem = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = linkUrl;
+        link.textContent = `Link ${i}`;
+        listItem.appendChild(link);
+        linkList.appendChild(listItem);
+      }
+    }
+  </script>
+</body>
+</html>
